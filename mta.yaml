@@ -12,32 +12,7 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
-  - name: app-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      instances: 1
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: app-auth
-      - name: app-db
-      - name: app-connectivity
-      - name: app-destination
-
-  - name: app-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: app-db
-
+  
   - name: app
     type: approuter.nodejs
     path: app/router
