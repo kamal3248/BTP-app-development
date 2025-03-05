@@ -62,51 +62,7 @@ modules:
           app-protocol: ${protocol}
           app-uri: ${default-uri}
 
-  - name: app-app-deployer
-    type: com.sap.application.content
-    path: gen
-    requires:
-      - name: app-html5-repo-host
-        parameters:
-          content-target: true
-    build-parameters:
-      build-result: app/
-      requires:
-
-
-  - name: app-portal-deployer
-    type: com.sap.application.content
-    path: app/portal
-    requires:
-      - name: app-portal
-        parameters:
-          content-target: true
-          service-key:
-            name: app-portal-key
-            config:
-              content-endpoint: developer
-      - name: app-auth
-      - name: app-html5-repo-host
-      - name: app-app-deployer
-    deployed-after:
-      - app-app-deployer
-  - name: notification-content-deployment
-    type: nodejs
-    path: gen/srv
-    parameters:
-      no-route: true
-      no-start: true
-      memory: 256MB
-      disk-quota: 1GB
-      tasks:
-        - name: notification-content-deployment
-          command: "node node_modules/@cap-js/notifications/lib/content-deployment.js"
-          memory: 256MB
-          disk-quota: 1GB
-    requires:
-      - name: app-destination
-      - name: app-auth
-      - name: app-db
+ 
 resources:
   - name: app-auth
     type: org.cloudfoundry.managed-service
