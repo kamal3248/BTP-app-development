@@ -54,21 +54,23 @@ stages:
   Build:
     mavenExecuteStaticCodeChecks: false
     npmExecuteLint: false
+
   Acceptance:
+    cloudFoundryDeploy: false
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com/"
     cfOrg: "trialdev"
     cfSpace: "trialdev"
+    cfAppName: "app"
     deployType: "standard"
-    cloudFoundryDeploy: false
     npmExecuteEndToEndTests: false
-  Malware Scan:
-    malwareExecuteScan: false
+
   Release:
     tmsExport: false
     tmsUpload: false
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com/"
     cfOrg: "trialdev"
     cfSpace: "trialdev"
+    cfAppName: "app"
     deployType: "standard"
     cloudFoundryDeploy: true
   Additional Unit Tests:
